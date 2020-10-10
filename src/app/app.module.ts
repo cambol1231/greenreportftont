@@ -14,7 +14,6 @@ import { RegistroAuditoriaComponent } from './registro-auditoria/registro-audito
 import { MaterialesComponent } from './materiales/materiales.component';
 import { ProcesoRecuperacionComponent } from './proceso-recuperacion/proceso-recuperacion.component';
 import { AuditoriaRecuperacionComponent } from './auditoria-recuperacion/auditoria-recuperacion.component';
-import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
     imports: [
@@ -34,8 +33,7 @@ import { MenuComponent } from './menu/menu.component';
         RegistroAuditoriaComponent,
         MaterialesComponent,
         ProcesoRecuperacionComponent,
-        AuditoriaRecuperacionComponent,
-        MenuComponent
+        AuditoriaRecuperacionComponent
     ],
     providers: [
     ],

@@ -15,7 +15,6 @@
     "font-awesome": "4.7.0",
     "jquery": "3.5.1",
     "rxjs": "^6.3.3",
-    "sweetalert2": "^10.3.6",
     "zone.js": "^0.10.3"
   },
   "scripts": {
