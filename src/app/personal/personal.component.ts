@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonalService } from '../Servicios/personal.service';
 import { Personal } from '../models/Personal';
-import {StorageService} from '../Servicios/storage.service'
+import { StorageService } from '../Servicios/storage.service'
 
 @Component({
   selector: 'app-personal',
@@ -21,28 +21,30 @@ export class PersonalComponent implements OnInit {
   errorMessage: string;
   user: any = undefined;
   personas: any = undefined;
+  public visualizar: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private api:PersonalService,
+    private api: PersonalService,
     private storage: StorageService
   ) {
     this.mostrarNuevo = false;
-    this.mostrarLista = true;   
+    this.mostrarLista = true;
+    this.visualizar = false;
   }
 
   ngOnInit() {
 
     this.personalForm = this.formBuilder.group({
-      nombre:  ['', [Validators.required, Validators.minLength(5)]],  
-      correo:  ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
-      estado:  ['', [Validators.required, Validators.minLength(1)]],
-      idCargo:  ['', [Validators.required, Validators.minLength(1)]],
-      idContraseña:  ['', [Validators.required, Validators.minLength(8)]],
+      nombre: ['', [Validators.required, Validators.minLength(5)]],
+      correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
+      estado: ['', [Validators.required, Validators.minLength(1)]],
+      idCargo: ['', [Validators.required, Validators.minLength(1)]],
+      idContraseña: ['', [Validators.required, Validators.minLength(8)]],
       Descripcion: ['', [Validators.required, Validators.minLength(5)]],
-      
+
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
 
@@ -50,15 +52,16 @@ export class PersonalComponent implements OnInit {
 
     this.getPersonal()
   }
-//Trae informacion del personal 
+  //Trae informacion del personal 
   getPersonal() {
     this.api.getPersonal()
-    .subscribe(data => {
-      this.personas = data
-    })
+      .subscribe(data => {
+        this.personas = data
+        this.personas.visualisar = false;
+      })
   }
 
-/// funcion para el manejo de formatos
+  /// funcion para el manejo de formatos
   mostrar(seleccionado: any) {
     if (seleccionado === 'N') {
       this.mostrarNuevo = true;
@@ -71,13 +74,13 @@ export class PersonalComponent implements OnInit {
     }
   }
 
-// trae todos los componentes del formulario
+  // trae todos los componentes del formulario
   get f() {
     return this.personalForm.controls;
   }
 
   // Validacion de los campos
-  Personal(){
+  Personal() {
     if (this.personalForm.invalid) {
       for (const prop in this.personalForm.controls) {
         this.personalForm.controls[prop].markAsTouched();
@@ -85,102 +88,112 @@ export class PersonalComponent implements OnInit {
       }
       return;
     }
-// funcion para agregar personal
+    // funcion para agregar personal
     const personal = new Personal(
-    this.f.nombre.value,
-    this.f.correo.value,
-    this.f.estado.value,
-    this.f.idCargo.value,
-    this.f.idContraseña.value,
-    this.f.Descripcion.value)
+      this.f.nombre.value,
+      this.f.correo.value,
+      this.f.estado.value,
+      this.f.idCargo.value,
+      this.f.idContraseña.value,
+      this.f.Descripcion.value)
     console.log("personal", personal)
 
     this.api.Personal(personal).subscribe(
-      nombre =>  {
-            this.storage.create('_nombre',nombre);
-            this.router.navigate([this.returnUrl]);
-        }, ({error}) => { 
-            if (error){
-              this.hasError = true;
-              this.errorMessage = error.error;
-              console.log(error);
-              setTimeout(() => {
-                this.hasError = false;
-                this.errorMessage = '';
-              }, 3000);
-            }
-          }      
+      nombre => {
+        this.storage.create('_nombre', nombre);
+        this.router.navigate([this.returnUrl]);
+      }, ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
     )
 
     this.api.Usuario(personal).subscribe(
-      nombre =>  {
-            this.storage.create('_nombre',nombre);
-            this.router.navigate([this.returnUrl]);
-        }, ({error}) => { 
-            if (error){
-              this.hasError = true;
-              this.errorMessage = error.error;
-              console.log(error);
-              setTimeout(() => {
-                this.hasError = false;
-                this.errorMessage = '';
-              }, 3000);
-            }
-          }      
+      nombre => {
+        this.storage.create('_nombre', nombre);
+        this.router.navigate([this.returnUrl]);
+      }, ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
     )
     this.api.contraseña(personal).subscribe(
-      nombre =>  {
-            this.storage.create('_nombre',nombre);
-            this.router.navigate([this.returnUrl]);
-        }, ({error}) => { 
-            if (error){
-              this.hasError = true;
-              this.errorMessage = error.error;
-              console.log(error);
-              setTimeout(() => {
-                this.hasError = false;
-                this.errorMessage = '';
-              }, 3000);
-            }
-          }      
+      nombre => {
+        this.storage.create('_nombre', nombre);
+        this.router.navigate([this.returnUrl]);
+      }, ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
     )
     this.api.rol(personal).subscribe(
-      nombre =>  {
-            this.storage.create('_nombre',nombre);
-            this.router.navigate([this.returnUrl]);
-        }, ({error}) => { 
-            if (error){
-              this.hasError = true;
-              this.errorMessage = error.error;
-              console.log(error);
-              setTimeout(() => {
-                this.hasError = false;
-                this.errorMessage = '';
-              }, 3000);
-            }
-          }      
+      nombre => {
+        this.storage.create('_nombre', nombre);
+        this.router.navigate([this.returnUrl]);
+      }, ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
     )
 
     this.api.permisos(personal).subscribe(
-      nombre =>  {
-            this.storage.create('_nombre',nombre);
-            this.router.navigate([this.returnUrl]);
-        }, ({error}) => { 
-            if (error){
-              this.hasError = true;
-              this.errorMessage = error.error;
-              console.log(error);
-              setTimeout(() => {
-                this.hasError = false;
-                this.errorMessage = '';
-              }, 3000);
-            }
-          }      
+      nombre => {
+        this.storage.create('_nombre', nombre);
+        this.router.navigate([this.returnUrl]);
+      }, ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
     )
 
-}
+  }
 
+  public mostrarDatos(persona: any) {
+    if (persona.visualizar) {
+      persona.visualizar = false;
+      return false;
+    } else {
+      persona.visualizar = true;
 
+      return true;
+    }
+
+  }
 
 
 }
