@@ -1,20 +1,63 @@
-img{
-    display:block;
-    margin:auto;
+    img {
+        display: block;
+        margin: auto;
     }
-.fondo{
-    background-color: #f5f6fb; 
-    padding: none !important;
-}
-.padre {
-    /*IMPORTANTE*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.input-tex{
-    border-bottom-left-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
-    border:2px solid !important;
-    border-color: transparent #aaa #aaa !important; 
-}
+    
+    .fondo {
+        background-color: #f5f6fb;
+        padding: none !important;
+    }
+    
+    .padre {
+        /*IMPORTANTE*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .input-tex {
+        border-bottom-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        border: 2px solid !important;
+        border-color: transparent #aaa #aaa !important;
+    }
+    
+    .fondoblanco {
+        background-color: #fff;
+    }
+    
+    .titulo {
+        font-size: 55px;
+    }
+    
+    .ocultarTabla {
+        display: none !important;
+    }
+    
+    .ocultarCard {
+        display: none !important;
+    }
+    
+    @media (max-width: 1200px) {
+        .titulo {
+            font-size: 38px;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .ocultarTabla {
+            display: none !important;
+        }
+        .ocultarCard {
+            display: block !important;
+        }
+    }
+    
+    @media (min-width: 601px) {
+        .ocultarTabla {
+            display: block !important;
+        }
+        .ocultarCard {
+            display: none !important;
+        }
+    }
