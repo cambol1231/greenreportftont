@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         this.storage.create('_user', user);
         this.router.navigate([this.returnUrl]);
         this.serCompartido.cerrar();
-        this.serCompartido.mensajeInformativo('Hola Perra','Guaricha','info');
+        this.serCompartido.mensajeInformativo('Bienvenido','','info');
       }, ({ error }) => {
         if (error) {
           this.hasError = true;
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
             this.errorMessage = '';
           }, 3000);
           this.serCompartido.cerrar();
-          this.serCompartido.mensajeInformativo('Error Faltal','Paila paila pila','error');
+          this.serCompartido.mensajeInformativo('Error Faltal','Consulte con el Administrador','error');
         }
       }
     )

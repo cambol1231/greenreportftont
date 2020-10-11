@@ -17,6 +17,8 @@ export class AppComponent {
         this.router.navigate(['/rol']);
         this.router.navigate(['/permisos']);
         this.router.navigate(['/materiales']);
+        this.router.navigate(['/Recuperacion']);
+        
 
     }
 }
