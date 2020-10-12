@@ -53,7 +53,7 @@ export class RegistroComponent implements OnInit {
   getRecuperacion() {
     this.api.getRecuperacion()
       .subscribe(data => {
-        this.registro = data
+        this.registro = data[0];
         this.registro.visualisar = false;
       })
   }

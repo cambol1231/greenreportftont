@@ -18,7 +18,7 @@ export class AppComponent {
         this.router.navigate(['/permisos']);
         this.router.navigate(['/materiales']);
         this.router.navigate(['/Recuperacion']);
-        
+        this.router.navigate(['/RecuperacionAuditoria']);   
 
     }
 }

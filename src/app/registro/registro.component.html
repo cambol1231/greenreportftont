@@ -1,10 +1,10 @@
 <div style="margin:50px; ">
     <div class="row justify-content-center" style="background-color: #333333; color: white; font-size: small; border-radius: 10px;">
         <div class="col-6" style="text-align: center; border-style: solid; border-color: transparent #ffff transparent transparent;" (click)="mostrar('L')">
-            <label style="padding: 5px;">Recolección</label>
+            <label style="padding: 5px;"><i class="fa fa-list-ul"></i>  Recolección</label>
         </div>
         <div class="col-6" style="text-align: center; justify-self: center;" (click)="mostrar('N')">
-            <label style="padding: 8px;">Nuevo</label>
+            <label style="padding: 8px;"><i class="fa fa-user-plus"></i>Nuevo</label>
         </div>
     </div>
 
@@ -81,7 +81,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col col-sm-6">
-                                    Codigo de recolección: {{ registro?.correo }}
+                                    Codigo de recolección: {{ registro?.id}}
                                 </div>
                                 <div class="col col-sm-6">
                                     Material: {{ registro?.Material }}
