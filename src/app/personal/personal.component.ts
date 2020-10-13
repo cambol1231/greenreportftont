@@ -47,9 +47,6 @@ export class PersonalComponent implements OnInit {
 
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-
-    this.user = JSON.parse(localStorage.getItem('_user'));
-
     this.getPersonal()
   }
   //Trae informacion del personal 
@@ -58,7 +55,7 @@ export class PersonalComponent implements OnInit {
       .subscribe(data => {
         this.personas = data
         this.personas.visualisar = false;
-      })
+      });
   }
 
   /// funcion para el manejo de formatos
