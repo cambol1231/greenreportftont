@@ -20,7 +20,7 @@ export class RegistroComponent implements OnInit {
   hasError: boolean;
   errorMessage: string;
   user: any = undefined;
-  registro: any = undefined;
+  registros: any = undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -53,8 +53,9 @@ export class RegistroComponent implements OnInit {
   getRecuperacion() {
     this.api.getRecuperacion()
       .subscribe(data => {
-        this.registro = data[0];
-        this.registro.visualisar = false;
+        this.registros = data;
+        console.log(data);
+        this.registros.visualisar = false;
       })
   }
   
@@ -84,7 +85,7 @@ export class RegistroComponent implements OnInit {
       }
       return;
     }
-    const Registro = new this.registro(
+    const Registro = new this.registros(
       this.f.id.value,
       this.f.correo.value,
       this.f.Material.value,

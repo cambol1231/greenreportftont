@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonalService } from '../Servicios/personal.service';
 import { Personal } from '../models/Personal';
 import { StorageService } from '../Servicios/storage.service'
+import { ServiceCompartidoService } from '../servicioCompartido/service-compartido.service';
 
 @Component({
   selector: 'app-personal',
@@ -28,7 +29,8 @@ export class PersonalComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private api: PersonalService,
-    private storage: StorageService
+    private storage: StorageService,
+    private serCompartido: ServiceCompartidoService
   ) {
     this.mostrarNuevo = false;
     this.mostrarLista = true;
@@ -37,6 +39,21 @@ export class PersonalComponent implements OnInit {
 
   ngOnInit() {
 
+    this.inicializar();
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.getPersonal()
+  }
+  //Trae informacion del personal 
+  getPersonal() {
+    this.api.getPersonal()
+      .subscribe(data => {
+        this.personas = data
+        console.log(data);
+        this.personas.visualisar = false;
+      });
+  }
+
+  inicializar() {
     this.personalForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(5)]],
       correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
@@ -46,18 +63,7 @@ export class PersonalComponent implements OnInit {
       Descripcion: ['', [Validators.required, Validators.minLength(5)]],
 
     });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-    this.getPersonal()
   }
-  //Trae informacion del personal 
-  getPersonal() {
-    this.api.getPersonal()
-      .subscribe(data => {
-        this.personas = data
-        this.personas.visualisar = false;
-      });
-  }
-
   /// funcion para el manejo de formatos
   mostrar(seleccionado: any) {
     if (seleccionado === 'N') {
@@ -78,13 +84,14 @@ export class PersonalComponent implements OnInit {
 
   // Validacion de los campos
   Personal() {
-    if (this.personalForm.invalid) {
+    this.serCompartido.cargando('Agregando usuario', 'Estamos guardadno un usuario nuevo');
+   /*if (this.personalForm.invalid) {
       for (const prop in this.personalForm.controls) {
         this.personalForm.controls[prop].markAsTouched();
         console.log('this.personalForm.controls[prop] :>> ', prop, this.personalForm.controls[prop]);
       }
       return;
-    }
+    }*/
     // funcion para agregar personal
     const personal = new Personal(
       this.f.nombre.value,
@@ -97,8 +104,7 @@ export class PersonalComponent implements OnInit {
 
     this.api.Personal(personal).subscribe(
       nombre => {
-        this.storage.create('_nombre', nombre);
-        this.router.navigate([this.returnUrl]);
+
       }, ({ error }) => {
         if (error) {
           this.hasError = true;
@@ -114,8 +120,7 @@ export class PersonalComponent implements OnInit {
 
     this.api.Usuario(personal).subscribe(
       nombre => {
-        this.storage.create('_nombre', nombre);
-        this.router.navigate([this.returnUrl]);
+        
       }, ({ error }) => {
         if (error) {
           this.hasError = true;
@@ -130,8 +135,7 @@ export class PersonalComponent implements OnInit {
     )
     this.api.contraseña(personal).subscribe(
       nombre => {
-        this.storage.create('_nombre', nombre);
-        this.router.navigate([this.returnUrl]);
+        
       }, ({ error }) => {
         if (error) {
           this.hasError = true;
@@ -146,8 +150,7 @@ export class PersonalComponent implements OnInit {
     )
     this.api.rol(personal).subscribe(
       nombre => {
-        this.storage.create('_nombre', nombre);
-        this.router.navigate([this.returnUrl]);
+      
       }, ({ error }) => {
         if (error) {
           this.hasError = true;
@@ -163,8 +166,11 @@ export class PersonalComponent implements OnInit {
 
     this.api.permisos(personal).subscribe(
       nombre => {
-        this.storage.create('_nombre', nombre);
-        this.router.navigate([this.returnUrl]);
+        this.inicializar();
+        this. mostrar('L');
+        this.serCompartido.cerrar();
+        this.serCompartido.mensajeInformativo('Se Agrego con exito', 'Se agrego con exito el usuario '+ personal.nombre,'success' );
+        this.personas.push(personal);
       }, ({ error }) => {
         if (error) {
           this.hasError = true;

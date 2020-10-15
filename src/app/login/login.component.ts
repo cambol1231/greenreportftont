@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if (!this.validarIngreso()) {
       this.loginForm = this.formBuilder.group({
-        username: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
+        username: ['', [Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
         password: ['', [Validators.required, Validators.minLength(8)]]
       });
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/green/home';
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.serCompartido.cargando('Buscando información','Se esta busncado la información del usuario');
+    this.serCompartido.cargando('Buscando información','Se esta buscando la información del usuario');
     const login = new Login(
       this.loginForm.get('username').value,
       this.loginForm.get('password').value

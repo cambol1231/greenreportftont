@@ -40,7 +40,8 @@ export class InformacionPerfilComponent implements OnInit {
     .subscribe(data => {
       
       this.perfil = data[0];
-      this.nombre = this.perfil.Nombre;
+      console.log(data);
+      //this.nombre = this.perfil.Nombre;
       console.log(this.perfil);
       console.log(this.nombre);
     });
