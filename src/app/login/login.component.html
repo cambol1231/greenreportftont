@@ -31,8 +31,8 @@
                                             <span class="input-group-text" id="basic-addon1"><i [class]="nomIco" (click)="visualizacioncontr()"></i></span>
                                         </div>
                                     </div>
-                                    <div *ngIf="loginForm.get('password').value < 8">
-                                        <label>ña es requerida</label>
+                                    <div *ngIf="loginForm.get('password').value<8">
+                                        <label>La contraseña es requerida</label>
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <button [disabled]="!loginForm.valid" class="btn btn-success boton" style="align-items: center;">

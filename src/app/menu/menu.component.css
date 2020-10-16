@@ -1,0 +1,28 @@
+.dropdown-item.active {
+    color: #000000;
+    text-decoration: none;
+    background-color: #7ed957;
+}
+
+.color-ico-principal {
+    color: #3e721d;
+}
+
+.color-ico-secundario {
+    color: #000000;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: transparent;
+    border-style: none;
+}
+
+.dropdown-item {
+    border: 2px;
+    border-color: #b1bcc5;
+    border-bottom-style: solid !important;
+}
+
+.color-nav {
+    color: black !important;
+}

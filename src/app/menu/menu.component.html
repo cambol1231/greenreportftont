@@ -5,40 +5,40 @@
         </button>
         <nav class="navbar navbar-light bg-light" [routerLink]="['/home']">
             <a class="navbar-brand">
-                <img src="../../assets/Logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">Green Report Web
+                <img src="../../assets/Logo.jpeg" width="40" height="40" class="d-inline-block align-top" alt="">Green Report Web
             </a>
         </nav>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
-                        <i class="fa fa-users"> </i> Personal
+                    <a class="nav-link color-nav dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
+                        <i class="fa fa-users color-ico-principal"> </i> Personal
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" [routerLink]="['/green/InformacionPerfil']" [routerLinkActive]="'active'">Informacion Perfil</a>
-                        <a class="dropdown-item" [routerLink]="['/green/personal']" [routerLinkActive]="'active'">Personal</a>
+                        <a class="dropdown-item" [routerLink]="['/green/InformacionPerfil']" [routerLinkActive]="'active'"><i class="fa fa-users color-ico-secundario"> </i> Informacion Perfil</a>
+                        <a class="dropdown-item" [routerLink]="['/green/personal']" [routerLinkActive]="'active'">Personal de la organización</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
-                        Registro Recuperación
+                    <a class="nav-link color-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
+                        <i class="fa fa-recycle color-ico-principal"></i> Registro Recuperación
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" [routerLink]="['/green/Registro']" [routerLinkActive]="'active'">Registro</a>
-                        <a class="dropdown-item" [routerLink]="['/green/RegistroAuditoria']" [routerLinkActive]="'active'">Registro Auditoria</a>
+                        <a class="dropdown-item" [routerLink]="['/green/RegistroAuditoria']" [routerLinkActive]="'active'"> Registro Auditoria</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
-                        Materiales
+                    <a class="nav-link color-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
+                        <i class="fa fa-table color-ico-principal"></i> Materiales
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" [routerLink]="['/green/Materiales']" [routerLinkActive]="'active'">Materiales</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
-                        Reportes
+                    <a class="nav-link color-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLinkActive]="'active'">
+                        <i class="fa fa-signal color-ico-principal"></i> Reportes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" [routerLink]="['/green/ProcesoRecuperacion']" [routerLinkActive]="'active'">Proceso Recuperación</a>
@@ -49,10 +49,10 @@
             <div class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" [routerLink]="['/green/InformacionPerfil']">Usuario: {{ user?.correo }}</a>
+                        <a class="nav-link color-nav" [routerLink]="['/green/InformacionPerfil']">Usuario: {{ user?.correo }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" (click)="cerrarSesion()">Cerrar sesión</a>
+                        <a class="nav-link color-nav" (click)="cerrarSesion()">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>
