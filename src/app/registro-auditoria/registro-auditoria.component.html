@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="card ocultarCard" style="width: 30rem; margin-top: 10px; ">
-            <div>
+            <div *ngFor="let registroAuditoria of registroAuditoria">
                 <div class="card-header" (click)="mostrarDatos(registroAuditoria)">
                     Correo Funcionario: {{ registroAuditoria?.correo }}
                 </div>
@@ -114,7 +114,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let registroAuditoria of registroAuditoria; let i = index">
                         <td style="text-align: center;">
                             {{ registroAuditoria?.id}}
                         </td>

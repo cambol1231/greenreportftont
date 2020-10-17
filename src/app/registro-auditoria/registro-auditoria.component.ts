@@ -54,7 +54,7 @@ export class RegistroAuditoriaComponent implements OnInit {
   getRecuperacionAuditoria() {
     this.api.getRecuperacionAuditoria()
       .subscribe(data => {
-        this.registroAuditoria = data[0];
+        this.registroAuditoria = data;
         this.registroAuditoria.visualisar = false;
       })
   }
@@ -86,12 +86,12 @@ export class RegistroAuditoriaComponent implements OnInit {
     }
   }
 
-  public mostrarDatos(registro: any) {
-    if (registro.visualizar) {
-      registro.visualizar = false;
+  public mostrarDatos(registroAuditoria: any) {
+    if (registroAuditoria.visualizar) {
+      registroAuditoria.visualizar = false;
       return false;
     } else {
-      registro.visualizar = true;
+      registroAuditoria.visualizar = true;
       return true;
     }
 
