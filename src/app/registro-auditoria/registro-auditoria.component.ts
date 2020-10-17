@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RecuperacionAuditoriaService } from '../Servicios/RecuperacionAuditoria.service';
-import { Recuperacion } from '../models/Recuperacion';
+import { RecuperacionAuditoria } from '../models/RecuperacionAuditoria';
 import {StorageService} from '../Servicios/storage.service'
+import { ServiceCompartidoService } from '../servicioCompartido/service-compartido.service';
 
 @Component({
   selector: 'app-registro-auditoria',
@@ -21,13 +22,15 @@ export class RegistroAuditoriaComponent implements OnInit {
   errorMessage: string;
   user: any = undefined;
   registroAuditoria: any = undefined;
+  
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private api:RecuperacionAuditoriaService,
-    private storage: StorageService
+    private storage: StorageService,
+    private serCompartido: ServiceCompartidoService
   ) {
     this.mostrarNuevo = false;
     this.mostrarLista = true;   
@@ -35,13 +38,7 @@ export class RegistroAuditoriaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.RegistroAuditoriaForm = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
-      Material: ['', [Validators.required, Validators.minLength(1)]],
-      UnidadDeMedida: ['', [Validators.required, Validators.minLength(1)]],
-      Cantidad: ['', [Validators.required]]
-    }); 
+    this.inicializar();
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
 
@@ -49,6 +46,16 @@ export class RegistroAuditoriaComponent implements OnInit {
 
     this.getRecuperacionAuditoria()
 
+  }
+
+  inicializar(){
+    this.RegistroAuditoriaForm = this.formBuilder.group({
+      idPorc_Recupera: ['', [Validators.required]],
+      correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
+      idMaterial: ['', [Validators.required]],
+      CantidadMaterial: ['', [Validators.required]],
+      idUnidadMedida: ['', [Validators.required]]
+    }); 
   }
 
   getRecuperacionAuditoria() {
@@ -77,6 +84,7 @@ export class RegistroAuditoriaComponent implements OnInit {
 
 
   RegistroAuditoria() {
+    this.serCompartido.cargando('Agregando usuario', 'Estamos guardando un usuario nuevo');
     if (this.RegistroAuditoriaForm.invalid) {
       for (const prop in this.RegistroAuditoriaForm.controls) {
         this.RegistroAuditoriaForm.controls[prop].markAsTouched();
@@ -84,6 +92,41 @@ export class RegistroAuditoriaComponent implements OnInit {
       }
       return;
     }
+
+    const recuperacionAuditoria = new RecuperacionAuditoria (
+      this.f.idPorc_Recupera.value,
+      this.f.correo.value,
+      this.f.idMaterial.value,
+      this.f.CantidadMaterial.value,
+      this.f.idUnidadMedida.value)
+    console.log("RegistroAuditoria", recuperacionAuditoria)
+
+    this.api.RecuperacionAuditoria(recuperacionAuditoria).subscribe(
+            (correo: any) => {
+        console.log(correo);
+        if (correo.status === 'ok') {
+          this.inicializar();
+          this.serCompartido.cerrar();
+          this.serCompartido.mensajeInformativo('Se Agrego con exito', 'Se agrego con exito el usuario ', 'success');
+          this.mostrar('L')
+        }
+        else 
+        this.serCompartido.mensajeInformativo('Error', 'Tienes un dato erroneo ', 'Validar');
+      }
+         , ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
+      
+    )
+
   }
 
   public mostrarDatos(registroAuditoria: any) {
@@ -97,5 +140,6 @@ export class RegistroAuditoriaComponent implements OnInit {
 
   }
 
+  
 
 }
