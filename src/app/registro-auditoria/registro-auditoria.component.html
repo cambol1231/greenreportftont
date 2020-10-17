@@ -17,6 +17,12 @@
             </div>
             <div class="col-12" style="margin-top: 10px;">
                 <div>
+                    <input type="text" placeholder="Codigo Recolección" formControlName="Codigo Recolección" class="form-control input-tex">
+                    <div>
+                        <small class="alert alert-danger mt-4" role="alert">Codigo Recolección es un campo obligatorio</small>
+                    </div>
+                </div>
+                <div>
                     <input type="text" placeholder="Correo Funcionario" formControlName="Correo Funcionario" class="form-control input-tex">
                     <div>
                         <small class="alert alert-danger mt-4" role="alert">Nombre es un campo obligatorio</small>
@@ -41,9 +47,6 @@
                         <option value="3">Administrador</option>
                         <option value="4">Gerente</option>
                     </select>
-                </div>
-                <div style="margin-top: 10px;">
-                    <input type="password" placeholder="Contraseña" class="form-control input-tex" formControlName="idContraseña">
                 </div>
                 <div style="margin-top: 10px;">
                     <select class="form-control input-tex" formControlName="UnidadMedida">

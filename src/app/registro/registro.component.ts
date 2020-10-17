@@ -21,6 +21,7 @@ export class RegistroComponent implements OnInit {
   errorMessage: string;
   user: any = undefined;
   registros: any = undefined;
+  Recuperacion : any = undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,19 +36,26 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
 
-    this.RegistroForm = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
-      Material: ['', [Validators.required, Validators.minLength(1)]],
-      DescripcionUnidadMedida: ['', [Validators.required, Validators.minLength(1)]],
-      Cantidad: ['', [Validators.required]]
-    }); 
+    this.inicializar();
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/Registro';
 
     this.user = JSON.parse(localStorage.getItem('_user'));
 
     this.getRecuperacion()
+  }
+
+
+  inicializar(){
+
+    this.RegistroForm = this.formBuilder.group({
+      idProc_Recupera: ['', [Validators.required]],
+      correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
+      idMaterialRec: ['', [Validators.required]],
+      idUnidadMedida: ['', [Validators.required]],
+      Cantidad: ['', [Validators.required]]
+    }); 
+
   }
 
   getRecuperacion() {
@@ -85,13 +93,30 @@ export class RegistroComponent implements OnInit {
       }
       return;
     }
-    const Registro = new this.registros(
-      this.f.id.value,
+    const recuperacion = new Recuperacion (
+      this.f.idProc_Recupera.value,
       this.f.correo.value,
-      this.f.Material.value,
-      this.f.DescripcionUnidadMedida.value,
+      this.f.idMaterialRec.value,
+      this.f.idUnidadMedida.value,
       this.f.Cantidad.value)
-    console.log("Registro", Registro)
+    console.log("Registro", recuperacion)
+
+    this.api.Recuperacion(recuperacion).subscribe(
+      correo => {
+
+      }, ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
+    )
+
   }
 
   public mostrarDatos(registro: any) {

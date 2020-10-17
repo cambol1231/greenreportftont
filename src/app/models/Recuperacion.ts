@@ -1,9 +1,9 @@
 export class Recuperacion {
     constructor(
-    public id: string,
-    public Correo: string,
-    public Material: string,
-    public DescripcionUnidadMedida: string,
+    public idProc_Recupera: string,
+    public correo: string,
+    public idMaterialRec: string,
+    public idUnidadMedida: string,
 	public Cantidad: string
 
     ) {}
