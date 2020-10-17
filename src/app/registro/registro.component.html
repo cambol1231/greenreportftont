@@ -15,51 +15,52 @@
                     <label> Crear nuevo</label>
                 </div>
             </div>
+            <div>
+                <input type="text" placeholder="Codigo Recolección" formControlName="idProc_Recupera" class="form-control input-tex">
+                <div>
+                    <small class="alert alert-danger mt-4" role="alert">Codigo Recolección es un campo obligatorio</small>
+                </div>
+            </div>
             <div class="col-12" style="margin-top: 10px;">
                 <div>
-                    <input type="text" placeholder="Correo Funcionario" formControlName="Correo Funcionario" class="form-control input-tex">
+                    <input type="text" placeholder="Correo Funcionario" formControlName="correo" class="form-control input-tex">
                     <div>
                         <small class="alert alert-danger mt-4" role="alert">Nombre es un campo obligatorio</small>
                     </div>
                 </div>
                 <div style="margin-top: 10px;">
-                    <select class="form-control input-tex" formControlName="Material">
+                    <select class="form-control input-tex" formControlName="idMaterialRec">
                         <option disabled selected value= "" >Seleccionar Material</option>
-                        <option value="Activo">Vidrio</option>
-                        <option value="Inactivo">Aluminio</option>
-                        <option value="Inactivo">Papel y Carton</option>
-                        <option value="Inactivo">Cobre</option>
-                        <option value="Inactivo">Plástico</option>
-                        <option value="Inactivo">Orgánico</option>
+                        <option value="1">Vidrio</option>
+                        <option value="2">Aluminio</option>
+                        <option value="3">Papel y Carton</option>
+                        <option value="4">Cobre</option>
+                        <option value="5">Plástico</option>
+                        <option value="6">Orgánico</option>
                     </select>
                 </div>
                 <div style="margin-top: 10px;">
-                    <select class="form-control input-tex" formControlName="idCargo">
-                        <option disabled selected value= "" >Seleccionar Cargo</option>
-                        <option value="1">Funcionario</option>
-                        <option value="2">Funcionario Planta</option>
-                        <option value="3">Administrador</option>
-                        <option value="4">Gerente</option>
-                    </select>
-                </div>
-                <div style="margin-top: 10px;">
-                    <input type="password" placeholder="Contraseña" class="form-control input-tex" formControlName="idContraseña">
-                </div>
-                <div style="margin-top: 10px;">
-                    <select class="form-control input-tex" formControlName="UnidadMedida">
+                    <select class="form-control input-tex" formControlName="idUnidadMedida">
                         <option disabled selected value= "" >Seleccionar Unidad de Medida</option>
-                        <option value="Cantidad">Cantidad</option>
-                        <option value="Kg">Kg</option>
-                        <option value="g">g</option>
+                        <option value="1">Cantidad</option>
+                        <option value="2">Kg</option>
+                        <option value="3">g</option>
                     </select>
                 </div>
+                <div>
+                    <input type="text" placeholder="Cantidad" formControlName="Cantidad" class="form-control input-tex">
+                    <div>
+                        <small class="alert alert-danger mt-4" role="alert">Cantidad es un campo obligatorio</small>
+                    </div>
+                </div>
+
             </div>
             <div class="row justify-content-center" style="margin-top: 10px;">
                 <div class="col-6 ">
-                    <button class="btn btn-danger">Cancelar</button>
+                    <button class="btn btn-danger" type="button" (click)="inicializar()">Cancelar</button>
                 </div>
                 <div class="col-6 ">
-                    <button class="btn btn-success">Guardar</button>
+                    <button class="btn btn-success" type="submit" [disabled]="!RegistroForm.valid">Guardar</button>
                 </div>
             </div>
 

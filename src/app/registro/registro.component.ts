@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RecuperacionService } from '../Servicios/Recuperacion.service';
 import { Recuperacion } from '../models/Recuperacion';
-import {StorageService} from '../Servicios/storage.service'
+import { StorageService } from '../Servicios/storage.service';
+import { ServiceCompartidoService } from '../servicioCompartido/service-compartido.service';
 
 @Component({
   selector: 'app-registro',
@@ -21,27 +22,24 @@ export class RegistroComponent implements OnInit {
   errorMessage: string;
   user: any = undefined;
   registros: any = undefined;
+  Recuperacion: any = undefined;
+  public visualizar: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private api:RecuperacionService,
-    private storage: StorageService
+    private api: RecuperacionService,
+    private storage: StorageService,
+    private serCompartido: ServiceCompartidoService
   ) {
     this.mostrarNuevo = false;
-    this.mostrarLista = true;   
+    this.mostrarLista = true;
   }
 
   ngOnInit() {
 
-    this.RegistroForm = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
-      Material: ['', [Validators.required, Validators.minLength(1)]],
-      DescripcionUnidadMedida: ['', [Validators.required, Validators.minLength(1)]],
-      Cantidad: ['', [Validators.required]]
-    }); 
+    this.inicializar();
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
 
@@ -50,15 +48,29 @@ export class RegistroComponent implements OnInit {
     this.getRecuperacion()
   }
 
+
+  inicializar() {
+
+    this.RegistroForm = this.formBuilder.group({
+      idProc_Recupera: ['', [Validators.required]],
+      correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
+      idMaterialRec: ['', [Validators.required]],
+      idUnidadMedida: ['', [Validators.required]],
+      Cantidad: ['', [Validators.required]]
+    });
+
+  }
+
   getRecuperacion() {
     this.api.getRecuperacion()
       .subscribe(data => {
+        console.log
         this.registros = data;
         console.log(data);
         this.registros.visualisar = false;
       })
   }
-  
+
 
   mostrar(seleccionado: any) {
     if (seleccionado === 'N') {
@@ -78,6 +90,7 @@ export class RegistroComponent implements OnInit {
 
 
   Registro() {
+    this.serCompartido.cargando('Agregando usuario', 'Estamos guardando un usuario nuevo');
     if (this.RegistroForm.invalid) {
       for (const prop in this.RegistroForm.controls) {
         this.RegistroForm.controls[prop].markAsTouched();
@@ -85,13 +98,39 @@ export class RegistroComponent implements OnInit {
       }
       return;
     }
-    const Registro = new this.registros(
-      this.f.id.value,
+    const recuperacion = new Recuperacion(
+      this.f.idProc_Recupera.value,
       this.f.correo.value,
-      this.f.Material.value,
-      this.f.DescripcionUnidadMedida.value,
+      this.f.idMaterialRec.value,
+      this.f.idUnidadMedida.value,
       this.f.Cantidad.value)
-    console.log("Registro", Registro)
+    console.log("Registro", recuperacion)
+
+    this.api.Recuperacion(recuperacion).subscribe(
+      (correo: any) => {
+        console.log(correo);
+        if (correo.status === 'ok') {
+          this.inicializar();
+          this.serCompartido.cerrar();
+          this.serCompartido.mensajeInformativo('Se Agrego con exito', 'Se agrego con exito el usuario ', 'success');
+          this.mostrar('L')
+        }
+        else 
+        this.serCompartido.mensajeInformativo('Error', 'Tienes un dato erroneo ', 'Validar');
+
+      }, ({ error }) => {
+        if (error) {
+          this.hasError = true;
+          this.errorMessage = error.error;
+          console.log(error);
+          setTimeout(() => {
+            this.hasError = false;
+            this.errorMessage = '';
+          }, 3000);
+        }
+      }
+    )
+
   }
 
   public mostrarDatos(registro: any) {

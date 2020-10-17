@@ -13,5 +13,8 @@ api = `${server}/Recuperacion`;
     getRecuperacion(): Observable<Recuperacion>{
       return this.http.get<any>(`${this.api}`);
   }
+  Recuperacion(Recuperacion:Recuperacion): Observable<Recuperacion>{
+    return this.http.post<any>(`${this.api}`, Recuperacion);
+  }
 
 }
