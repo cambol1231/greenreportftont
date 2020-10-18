@@ -1,7 +1,32 @@
 <div class="card">
-    <img src="../../assets/Logo4.png" style="width:100%">
-    <h1>{{ perfil?.Nombre }}</h1>
-    <p class="title">{{ perfil?.rol }}</p>
-    <p class="title">Asoanaporganicos</p>
-    <p class="title">{{ perfil?.Aporte }}</p>
+    <div>
+        <label class="titulo"> ¡Hola!</label>
+        <h1>{{ perfil?.Nombre }}</h1>
+    </div>
+    <div>
+        <h1 class="title">{{ perfil?.rol }} </h1>
+
+    </div>
+    <div>
+        <img src="../../assets/usuarioapp.jpg" style="width:80%">
+    </div>
+
+    <div>
+        <p class="title">La cantidad de dioxido de carbono (CO2) que has dejado de emitir con tu actividad de reciclaje es de:</p>
+    </div>
+
+    <div class="row align-items-center" style="margin: 1%;
+    border: 2px solid #fcc311;
+    border-radius: 5px;
+    background-color: #fcc311;
+    color: #000000;">
+        <div class="col-12" style="text-align: center; font-family: 'Times New Roman', Times, serif">
+            <label class="title"><strong> {{ perfil?.Aporte }} Kg </strong> </label>
+        </div>
+    </div>
+    <div>
+        <p class="title">Recuerda que por cada kg de material que se recupera, contribuyes a que se deje de emitir kilogramos de dioxido de carbono a la atmosfera, sigue asi!</p>
+    </div>
+
+
 </div>
