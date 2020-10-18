@@ -15,13 +15,16 @@ import { MaterialesComponent } from './materiales/materiales.component';
 import { ProcesoRecuperacionComponent } from './proceso-recuperacion/proceso-recuperacion.component';
 import { AuditoriaRecuperacionComponent } from './auditoria-recuperacion/auditoria-recuperacion.component';
 import { MenuComponent } from './menu/menu.component';
+//Graficos
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
+        ChartsModule
     ],
     declarations: [
         AppComponent,
