@@ -15,17 +15,11 @@
                     <label> Crear nuevo</label>
                 </div>
             </div>
-            <div>
-                <input type="text" placeholder="Codigo Recolección" formControlName="idProc_Recupera" class="form-control input-tex">
-                <div>
-                    <small class="alert alert-danger mt-4" role="alert">Codigo Recolección es un campo obligatorio</small>
-                </div>
-            </div>
             <div class="col-12" style="margin-top: 10px;">
                 <div>
                     <input type="text" placeholder="Correo Funcionario" formControlName="correo" class="form-control input-tex">
                     <div>
-                        <small class="alert alert-danger mt-4" role="alert">Nombre es un campo obligatorio</small>
+                        <small role="alert">Nombre es un campo obligatorio</small>
                     </div>
                 </div>
                 <div style="margin-top: 10px;">
@@ -48,9 +42,9 @@
                     </select>
                 </div>
                 <div>
-                    <input type="text" placeholder="Cantidad" formControlName="Cantidad" class="form-control input-tex">
+                    <input type="number" placeholder="Cantidad" formControlName="Cantidad" class="form-control input-tex">
                     <div>
-                        <small class="alert alert-danger mt-4" role="alert">Cantidad es un campo obligatorio</small>
+                        <small role="alert">Cantidad es un campo obligatorio</small>
                     </div>
                 </div>
 
@@ -81,9 +75,6 @@
                     <ul style="padding: 0px 10px !important;">
                         <li class="list-group-item">
                             <div class="row">
-                                <div class="col col-sm-6">
-                                    Codigo de recolección: {{ registro?.id}}
-                                </div>
                                 <div class="col col-sm-6">
                                     Material: {{ registro?.Material }}
                                 </div>
@@ -116,9 +107,6 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let registro of registros; let i = index">
-                        <td style="text-align: center;">
-                            {{ registro?.id}}
-                        </td>
                         <td style="text-align: center;">
                             {{ registro?.correo}}
                         </td>

@@ -52,7 +52,6 @@ export class RegistroComponent implements OnInit {
   inicializar() {
 
     this.RegistroForm = this.formBuilder.group({
-      idProc_Recupera: ['', [Validators.required]],
       correo: ['', Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')],
       idMaterialRec: ['', [Validators.required]],
       idUnidadMedida: ['', [Validators.required]],
@@ -99,7 +98,6 @@ export class RegistroComponent implements OnInit {
       return;
     }
     const recuperacion = new Recuperacion(
-      this.f.idProc_Recupera.value,
       this.f.correo.value,
       this.f.idMaterialRec.value,
       this.f.idUnidadMedida.value,
