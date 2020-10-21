@@ -60,7 +60,7 @@ export class PersonalComponent implements OnInit {
       estado: ['', [Validators.required, Validators.minLength(1)]],
       idCargo: ['', [Validators.required, Validators.minLength(1)]],
       idContraseña: ['', [Validators.required, Validators.minLength(8)]],
-      Descripcion: ['', [Validators.required, Validators.minLength(5)]],
+      Descripcion: ['', [Validators.required, Validators.minLength(1)]],
 
     });
   }
@@ -136,21 +136,6 @@ export class PersonalComponent implements OnInit {
     this.api.contraseña(personal).subscribe(
       nombre => {
         
-      }, ({ error }) => {
-        if (error) {
-          this.hasError = true;
-          this.errorMessage = error.error;
-          console.log(error);
-          setTimeout(() => {
-            this.hasError = false;
-            this.errorMessage = '';
-          }, 3000);
-        }
-      }
-    )
-    this.api.rol(personal).subscribe(
-      nombre => {
-      
       }, ({ error }) => {
         if (error) {
           this.hasError = true;
