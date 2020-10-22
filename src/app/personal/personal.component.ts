@@ -20,7 +20,6 @@ export class PersonalComponent implements OnInit {
   returnUrl: string;
   hasError: boolean;
   errorMessage: string;
-  user: any = undefined;
   personas: any = undefined;
   public visualizar: boolean;
 
@@ -48,7 +47,6 @@ export class PersonalComponent implements OnInit {
     this.api.getPersonal()
       .subscribe(data => {
         this.personas = data
-        console.log(data);
         this.personas.visualisar = false;
       });
   }

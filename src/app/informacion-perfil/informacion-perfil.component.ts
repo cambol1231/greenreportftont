@@ -15,7 +15,6 @@ export class InformacionPerfilComponent implements OnInit {
   public mostrarNuevo: boolean;
   public mostrarLista: boolean;
   returnUrl: string;
-  user: any = undefined;
   public perfil: Perfil;
   public nombre: string;
   constructor(

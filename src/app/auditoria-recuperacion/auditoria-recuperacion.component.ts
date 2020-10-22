@@ -9,14 +9,12 @@ import {StorageService} from '../Servicios/storage.service'
 export class AuditoriaRecuperacionComponent implements OnInit {
 
 
-  user: any = undefined;
-
   constructor(
     private storage: StorageService
   ) { }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('_user'));
+
   }
 
 }

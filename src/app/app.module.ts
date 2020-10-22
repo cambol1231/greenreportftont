@@ -17,6 +17,14 @@ import { AuditoriaRecuperacionComponent } from './auditoria-recuperacion/auditor
 import { MenuComponent } from './menu/menu.component';
 //Graficos
 import { ChartsModule } from 'ng2-charts';
+import { PersonalGuard } from './guardado/personal.guard';
+import { AuditoriaRecuperacionGuard } from './guardado/auditoria-recuperacion.guard';
+import { InformacionPerfilGuard } from './guardado/informacion-perfil.guard';
+import { MaterialesGuard } from './guardado/materiales.guard';
+import { ProcesoRecuperacionGuard } from './guardado/proceso-recuperacion.guard';
+import { RegistroGuard } from './guardado/registro.guard';
+import { RegistroAuditoriaGuard } from './guardado/registro-auditoria.guard';
+
 
 @NgModule({
     imports: [
@@ -41,6 +49,13 @@ import { ChartsModule } from 'ng2-charts';
         MenuComponent
     ],
     providers: [
+        PersonalGuard,
+        AuditoriaRecuperacionGuard,
+        InformacionPerfilGuard,
+        MaterialesGuard,
+        ProcesoRecuperacionGuard,
+        RegistroGuard,
+        RegistroAuditoriaGuard
     ],
     bootstrap: [AppComponent]
 })

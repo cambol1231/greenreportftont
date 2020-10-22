@@ -5,6 +5,7 @@ import { LoginService } from '../Servicios/login.service';
 import { Login } from '../models/login';
 import { StorageService } from '../Servicios/storage.service'
 import { ServiceCompartidoService } from '../servicioCompartido/service-compartido.service';
+import { AccesosService } from '../Servicios/Accesos.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private api: LoginService,
     private storage: StorageService,
-    private serCompartido: ServiceCompartidoService
+    private serCompartido: ServiceCompartidoService,
+    private apiAces: AccesosService
   ) {
     this.visualizarPas = 'password';
     this.nomIco = "fa fa-eye";
@@ -51,8 +53,8 @@ export class LoginComponent implements OnInit {
     this.api.login(login).subscribe(
       user => {
         sessionStorage.setItem('usuario', JSON.stringify(user));
-        this.storage.create('_user', user);
         this.router.navigate([this.returnUrl]);
+        this.getAccesos();
         this.serCompartido.cerrar();
         this.serCompartido.mensajeInformativo('Bienvenido','','info');
       }, ({ error }) => {
@@ -95,4 +97,12 @@ export class LoginComponent implements OnInit {
       return false;
     }
   }
+
+  getAccesos() {
+    this.apiAces.getAccesos()
+    .subscribe(data => {
+      localStorage.setItem('permisos', JSON.stringify(data));
+    });
+
+}
 }
