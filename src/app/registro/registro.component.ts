@@ -20,7 +20,6 @@ export class RegistroComponent implements OnInit {
   returnUrl: string;
   hasError: boolean;
   errorMessage: string;
-  user: any = undefined;
   registros: any = undefined;
   Recuperacion: any = undefined;
   public visualizar: boolean;
@@ -40,11 +39,7 @@ export class RegistroComponent implements OnInit {
   ngOnInit() {
 
     this.inicializar();
-
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-
-    this.user = JSON.parse(localStorage.getItem('_user'));
-
     this.getRecuperacion()
   }
 

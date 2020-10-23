@@ -12,6 +12,14 @@ import { ProcesoRecuperacionComponent } from './proceso-recuperacion/proceso-rec
 import { AuditoriaRecuperacionComponent } from './auditoria-recuperacion/auditoria-recuperacion.component';
 import { MenuComponent } from './menu/menu.component';
 import { GuardadoGuard } from './guardado/guardado.guard';
+import { PersonalGuard } from './guardado/personal.guard';
+import { AuditoriaRecuperacionGuard } from './guardado/auditoria-recuperacion.guard';
+import { InformacionPerfilGuard } from './guardado/informacion-perfil.guard';
+import { MaterialesGuard } from './guardado/materiales.guard';
+import { ProcesoRecuperacionGuard } from './guardado/proceso-recuperacion.guard';
+import { RegistroAuditoriaGuard } from './guardado/registro-auditoria.guard';
+import { RegistroGuard } from './guardado/registro.guard';
+
 
 
 const routes: Routes = [
@@ -21,13 +29,13 @@ const routes: Routes = [
         children: [
             { path: 'home', component: HomeComponent, canActivate: [GuardadoGuard] },
             { path: 'inicio', component: InicioComponent, canActivate: [GuardadoGuard] },
-            { path: 'personal', component: PersonalComponent, canActivate: [GuardadoGuard] },
-            { path: 'InformacionPerfil', component: InformacionPerfilComponent, canActivate: [GuardadoGuard] },
-            { path: 'Registro', component: RegistroComponent, canActivate: [GuardadoGuard] },
-            { path: 'RegistroAuditoria', component: RegistroAuditoriaComponent, canActivate: [GuardadoGuard] },
-            { path: 'Materiales', component: MaterialesComponent, canActivate: [GuardadoGuard] },
-            { path: 'ProcesoRecuperacion', component: ProcesoRecuperacionComponent, canActivate: [GuardadoGuard] },
-            { path: 'AuditoriaRecuperacion', component: AuditoriaRecuperacionComponent, canActivate: [GuardadoGuard] },
+            { path: 'personal', component: PersonalComponent, canActivate: [GuardadoGuard, PersonalGuard] },
+            { path: 'InformacionPerfil', component: InformacionPerfilComponent, canActivate: [GuardadoGuard, InformacionPerfilGuard] },
+            { path: 'Registro', component: RegistroComponent, canActivate: [GuardadoGuard, RegistroGuard] },
+            { path: 'RegistroAuditoria', component: RegistroAuditoriaComponent, canActivate: [GuardadoGuard, RegistroAuditoriaGuard] },
+            { path: 'Materiales', component: MaterialesComponent, canActivate: [GuardadoGuard, MaterialesGuard] },
+            { path: 'ProcesoRecuperacion', component: ProcesoRecuperacionComponent, canActivate: [GuardadoGuard, ProcesoRecuperacionGuard] },
+            { path: 'AuditoriaRecuperacion', component: AuditoriaRecuperacionComponent, canActivate: [GuardadoGuard,AuditoriaRecuperacionGuard] },
 
         ]
     },

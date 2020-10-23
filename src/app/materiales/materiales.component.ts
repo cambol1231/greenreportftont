@@ -19,7 +19,6 @@ export class MaterialesComponent implements OnInit {
   returnUrl: string;
   hasError: boolean;
   errorMessage: string;
-  user: any = undefined;
   material: any = undefined;
 
   constructor(
@@ -34,7 +33,6 @@ export class MaterialesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('_user'));
     this.getMateriales()
   }
 
