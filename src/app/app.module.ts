@@ -17,6 +17,7 @@ import { AuditoriaRecuperacionComponent } from './auditoria-recuperacion/auditor
 import { MenuComponent } from './menu/menu.component';
 //Graficos
 import { ChartsModule } from 'ng2-charts';
+//Perfil
 import { PersonalGuard } from './guardado/personal.guard';
 import { AuditoriaRecuperacionGuard } from './guardado/auditoria-recuperacion.guard';
 import { InformacionPerfilGuard } from './guardado/informacion-perfil.guard';

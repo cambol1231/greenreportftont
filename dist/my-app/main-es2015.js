@@ -1,5 +1,46 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "+UMn":
+/*!******************************************************!*\
+  !*** ./src/app/guardado/informacion-perfil.guard.ts ***!
+  \******************************************************/
+/*! exports provided: InformacionPerfilGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InformacionPerfilGuard", function() { return InformacionPerfilGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+class InformacionPerfilGuard {
+    constructor(router) {
+        this.router = router;
+    }
+    canActivate() {
+        this.permiso = JSON.parse(localStorage.getItem('permisos'));
+        this.per = this.permiso.find(x => x.idPaginas == 4);
+        if (this.per) {
+            return true;
+        }
+        this.router.navigate(['/green/home']);
+        return false;
+    }
+}
+InformacionPerfilGuard.ɵfac = function InformacionPerfilGuard_Factory(t) { return new (t || InformacionPerfilGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
+InformacionPerfilGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: InformacionPerfilGuard, factory: InformacionPerfilGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](InformacionPerfilGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ 0:
 /*!***************************!*\
   !*** multi ./src/main.ts ***!
@@ -2259,7 +2300,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auditoria_recuperacion_auditoria_recuperacion_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./auditoria-recuperacion/auditoria-recuperacion.component */ "RA6E");
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./menu/menu.component */ "TGkX");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ng2-charts */ "LPYB");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _guardado_personal_guard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./guardado/personal.guard */ "yztj");
+/* harmony import */ var _guardado_auditoria_recuperacion_guard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./guardado/auditoria-recuperacion.guard */ "nwT6");
+/* harmony import */ var _guardado_informacion_perfil_guard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./guardado/informacion-perfil.guard */ "+UMn");
+/* harmony import */ var _guardado_materiales_guard__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./guardado/materiales.guard */ "bPi4");
+/* harmony import */ var _guardado_proceso_recuperacion_guard__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./guardado/proceso-recuperacion.guard */ "vW08");
+/* harmony import */ var _guardado_registro_guard__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./guardado/registro.guard */ "oABc");
+/* harmony import */ var _guardado_registro_auditoria_guard__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./guardado/registro-auditoria.guard */ "vkIw");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/router */ "tyNb");
 
 
 
@@ -2279,12 +2327,28 @@ __webpack_require__.r(__webpack_exports__);
 
 //Graficos
 
+//Perfil
+
+
+
+
+
+
+
 
 
 class AppModule {
 }
 AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [
+        _guardado_personal_guard__WEBPACK_IMPORTED_MODULE_18__["PersonalGuard"],
+        _guardado_auditoria_recuperacion_guard__WEBPACK_IMPORTED_MODULE_19__["AuditoriaRecuperacionGuard"],
+        _guardado_informacion_perfil_guard__WEBPACK_IMPORTED_MODULE_20__["InformacionPerfilGuard"],
+        _guardado_materiales_guard__WEBPACK_IMPORTED_MODULE_21__["MaterialesGuard"],
+        _guardado_proceso_recuperacion_guard__WEBPACK_IMPORTED_MODULE_22__["ProcesoRecuperacionGuard"],
+        _guardado_registro_guard__WEBPACK_IMPORTED_MODULE_23__["RegistroGuard"],
+        _guardado_registro_auditoria_guard__WEBPACK_IMPORTED_MODULE_24__["RegistroAuditoriaGuard"]
+    ], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
@@ -2304,7 +2368,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector
         _auditoria_recuperacion_auditoria_recuperacion_component__WEBPACK_IMPORTED_MODULE_15__["AuditoriaRecuperacionComponent"],
         _menu_menu_component__WEBPACK_IMPORTED_MODULE_16__["MenuComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
-        _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_18__["RouterModule"], ng2_charts__WEBPACK_IMPORTED_MODULE_17__["ChartsModule"]] }); })();
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_25__["RouterModule"], ng2_charts__WEBPACK_IMPORTED_MODULE_17__["ChartsModule"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
@@ -2329,7 +2393,15 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector
                     _auditoria_recuperacion_auditoria_recuperacion_component__WEBPACK_IMPORTED_MODULE_15__["AuditoriaRecuperacionComponent"],
                     _menu_menu_component__WEBPACK_IMPORTED_MODULE_16__["MenuComponent"]
                 ],
-                providers: [],
+                providers: [
+                    _guardado_personal_guard__WEBPACK_IMPORTED_MODULE_18__["PersonalGuard"],
+                    _guardado_auditoria_recuperacion_guard__WEBPACK_IMPORTED_MODULE_19__["AuditoriaRecuperacionGuard"],
+                    _guardado_informacion_perfil_guard__WEBPACK_IMPORTED_MODULE_20__["InformacionPerfilGuard"],
+                    _guardado_materiales_guard__WEBPACK_IMPORTED_MODULE_21__["MaterialesGuard"],
+                    _guardado_proceso_recuperacion_guard__WEBPACK_IMPORTED_MODULE_22__["ProcesoRecuperacionGuard"],
+                    _guardado_registro_guard__WEBPACK_IMPORTED_MODULE_23__["RegistroGuard"],
+                    _guardado_registro_auditoria_guard__WEBPACK_IMPORTED_MODULE_24__["RegistroAuditoriaGuard"]
+                ],
                 bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
             }]
     }], null, null); })();
@@ -2378,6 +2450,47 @@ PerfilService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInj
 
 /***/ }),
 
+/***/ "bPi4":
+/*!**********************************************!*\
+  !*** ./src/app/guardado/materiales.guard.ts ***!
+  \**********************************************/
+/*! exports provided: MaterialesGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MaterialesGuard", function() { return MaterialesGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+class MaterialesGuard {
+    constructor(router) {
+        this.router = router;
+    }
+    canActivate() {
+        this.permiso = JSON.parse(localStorage.getItem('permisos'));
+        this.per = this.permiso.find(x => x.idPaginas == 7);
+        if (this.per) {
+            return true;
+        }
+        this.router.navigate(['/green/home']);
+        return false;
+    }
+}
+MaterialesGuard.ɵfac = function MaterialesGuard_Factory(t) { return new (t || MaterialesGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
+MaterialesGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: MaterialesGuard, factory: MaterialesGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MaterialesGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "beVS":
 /*!********************************!*\
   !*** ./src/app/app.routing.ts ***!
@@ -2402,6 +2515,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_menu_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./menu/menu.component */ "TGkX");
 /* harmony import */ var _guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./guardado/guardado.guard */ "dISb");
 /* harmony import */ var _guardado_personal_guard__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./guardado/personal.guard */ "yztj");
+/* harmony import */ var _guardado_auditoria_recuperacion_guard__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./guardado/auditoria-recuperacion.guard */ "nwT6");
+/* harmony import */ var _guardado_informacion_perfil_guard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./guardado/informacion-perfil.guard */ "+UMn");
+/* harmony import */ var _guardado_materiales_guard__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./guardado/materiales.guard */ "bPi4");
+/* harmony import */ var _guardado_proceso_recuperacion_guard__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./guardado/proceso-recuperacion.guard */ "vW08");
+/* harmony import */ var _guardado_registro_auditoria_guard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./guardado/registro-auditoria.guard */ "vkIw");
+/* harmony import */ var _guardado_registro_guard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./guardado/registro.guard */ "oABc");
+
+
+
+
+
+
 
 
 
@@ -2424,12 +2549,12 @@ const routes = [
             { path: 'home', component: _home__WEBPACK_IMPORTED_MODULE_1__["HomeComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
             { path: 'inicio', component: _inicio_inicio_component__WEBPACK_IMPORTED_MODULE_3__["InicioComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
             { path: 'personal', component: _personal_personal_component__WEBPACK_IMPORTED_MODULE_4__["PersonalComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"], _guardado_personal_guard__WEBPACK_IMPORTED_MODULE_13__["PersonalGuard"]] },
-            { path: 'InformacionPerfil', component: _informacion_perfil_informacion_perfil_component__WEBPACK_IMPORTED_MODULE_5__["InformacionPerfilComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
-            { path: 'Registro', component: _registro_registro_component__WEBPACK_IMPORTED_MODULE_6__["RegistroComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
-            { path: 'RegistroAuditoria', component: _registro_auditoria_registro_auditoria_component__WEBPACK_IMPORTED_MODULE_7__["RegistroAuditoriaComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
-            { path: 'Materiales', component: _materiales_materiales_component__WEBPACK_IMPORTED_MODULE_8__["MaterialesComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
-            { path: 'ProcesoRecuperacion', component: _proceso_recuperacion_proceso_recuperacion_component__WEBPACK_IMPORTED_MODULE_9__["ProcesoRecuperacionComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
-            { path: 'AuditoriaRecuperacion', component: _auditoria_recuperacion_auditoria_recuperacion_component__WEBPACK_IMPORTED_MODULE_10__["AuditoriaRecuperacionComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"]] },
+            { path: 'InformacionPerfil', component: _informacion_perfil_informacion_perfil_component__WEBPACK_IMPORTED_MODULE_5__["InformacionPerfilComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"], _guardado_informacion_perfil_guard__WEBPACK_IMPORTED_MODULE_15__["InformacionPerfilGuard"]] },
+            { path: 'Registro', component: _registro_registro_component__WEBPACK_IMPORTED_MODULE_6__["RegistroComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"], _guardado_registro_guard__WEBPACK_IMPORTED_MODULE_19__["RegistroGuard"]] },
+            { path: 'RegistroAuditoria', component: _registro_auditoria_registro_auditoria_component__WEBPACK_IMPORTED_MODULE_7__["RegistroAuditoriaComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"], _guardado_registro_auditoria_guard__WEBPACK_IMPORTED_MODULE_18__["RegistroAuditoriaGuard"]] },
+            { path: 'Materiales', component: _materiales_materiales_component__WEBPACK_IMPORTED_MODULE_8__["MaterialesComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"], _guardado_materiales_guard__WEBPACK_IMPORTED_MODULE_16__["MaterialesGuard"]] },
+            { path: 'ProcesoRecuperacion', component: _proceso_recuperacion_proceso_recuperacion_component__WEBPACK_IMPORTED_MODULE_9__["ProcesoRecuperacionComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"], _guardado_proceso_recuperacion_guard__WEBPACK_IMPORTED_MODULE_17__["ProcesoRecuperacionGuard"]] },
+            { path: 'AuditoriaRecuperacion', component: _auditoria_recuperacion_auditoria_recuperacion_component__WEBPACK_IMPORTED_MODULE_10__["AuditoriaRecuperacionComponent"], canActivate: [_guardado_guardado_guard__WEBPACK_IMPORTED_MODULE_12__["GuardadoGuard"], _guardado_auditoria_recuperacion_guard__WEBPACK_IMPORTED_MODULE_14__["AuditoriaRecuperacionGuard"]] },
         ]
     },
     { path: '', component: _login__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
@@ -3153,6 +3278,88 @@ AccesosService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineIn
 
 /***/ }),
 
+/***/ "nwT6":
+/*!**********************************************************!*\
+  !*** ./src/app/guardado/auditoria-recuperacion.guard.ts ***!
+  \**********************************************************/
+/*! exports provided: AuditoriaRecuperacionGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuditoriaRecuperacionGuard", function() { return AuditoriaRecuperacionGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+class AuditoriaRecuperacionGuard {
+    constructor(router) {
+        this.router = router;
+    }
+    canActivate() {
+        this.permiso = JSON.parse(localStorage.getItem('permisos'));
+        this.per = this.permiso.find(x => x.idPaginas == 9);
+        if (this.per) {
+            return true;
+        }
+        this.router.navigate(['/green/home']);
+        return false;
+    }
+}
+AuditoriaRecuperacionGuard.ɵfac = function AuditoriaRecuperacionGuard_Factory(t) { return new (t || AuditoriaRecuperacionGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
+AuditoriaRecuperacionGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: AuditoriaRecuperacionGuard, factory: AuditoriaRecuperacionGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AuditoriaRecuperacionGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "oABc":
+/*!********************************************!*\
+  !*** ./src/app/guardado/registro.guard.ts ***!
+  \********************************************/
+/*! exports provided: RegistroGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistroGuard", function() { return RegistroGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+class RegistroGuard {
+    constructor(router) {
+        this.router = router;
+    }
+    canActivate() {
+        this.permiso = JSON.parse(localStorage.getItem('permisos'));
+        this.per = this.permiso.find(x => x.idPaginas == 5);
+        if (this.per) {
+            return true;
+        }
+        this.router.navigate(['/green/home']);
+        return false;
+    }
+}
+RegistroGuard.ɵfac = function RegistroGuard_Factory(t) { return new (t || RegistroGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
+RegistroGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: RegistroGuard, factory: RegistroGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RegistroGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "rrCN":
 /*!***********************************************!*\
   !*** ./src/app/Servicios/personal.service.ts ***!
@@ -3207,6 +3414,88 @@ PersonalService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
                 providedIn: 'root'
             }]
     }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "vW08":
+/*!********************************************************!*\
+  !*** ./src/app/guardado/proceso-recuperacion.guard.ts ***!
+  \********************************************************/
+/*! exports provided: ProcesoRecuperacionGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProcesoRecuperacionGuard", function() { return ProcesoRecuperacionGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+class ProcesoRecuperacionGuard {
+    constructor(router) {
+        this.router = router;
+    }
+    canActivate() {
+        this.permiso = JSON.parse(localStorage.getItem('permisos'));
+        this.per = this.permiso.find(x => x.idPaginas == 8);
+        if (this.per) {
+            return true;
+        }
+        this.router.navigate(['/green/home']);
+        return false;
+    }
+}
+ProcesoRecuperacionGuard.ɵfac = function ProcesoRecuperacionGuard_Factory(t) { return new (t || ProcesoRecuperacionGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
+ProcesoRecuperacionGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: ProcesoRecuperacionGuard, factory: ProcesoRecuperacionGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ProcesoRecuperacionGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
+/***/ "vkIw":
+/*!******************************************************!*\
+  !*** ./src/app/guardado/registro-auditoria.guard.ts ***!
+  \******************************************************/
+/*! exports provided: RegistroAuditoriaGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistroAuditoriaGuard", function() { return RegistroAuditoriaGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+class RegistroAuditoriaGuard {
+    constructor(router) {
+        this.router = router;
+    }
+    canActivate() {
+        this.permiso = JSON.parse(localStorage.getItem('permisos'));
+        this.per = this.permiso.find(x => x.idPaginas == 6);
+        if (this.per) {
+            return true;
+        }
+        this.router.navigate(['/green/home']);
+        return false;
+    }
+}
+RegistroAuditoriaGuard.ɵfac = function RegistroAuditoriaGuard_Factory(t) { return new (t || RegistroAuditoriaGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
+RegistroAuditoriaGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: RegistroAuditoriaGuard, factory: RegistroAuditoriaGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RegistroAuditoriaGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }]; }, null); })();
 
 
 /***/ }),
@@ -3507,12 +3796,10 @@ __webpack_require__.r(__webpack_exports__);
 class PersonalGuard {
     constructor(router) {
         this.router = router;
-        this.permiso = JSON.parse(localStorage.getItem('permisos'));
     }
     canActivate() {
-        console.log(this.permiso);
+        this.permiso = JSON.parse(localStorage.getItem('permisos'));
         this.per = this.permiso.find(x => x.idPaginas == 3);
-        console.log(this.per);
         if (this.per) {
             return true;
         }
