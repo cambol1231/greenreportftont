@@ -83,6 +83,9 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col col-sm-6">
+                                    Codigo de recolección: {{ registro?.id}}
+                                </div>
+                                <div class="col col-sm-6">
                                     Unidad de Medida: {{ registro?.DescripcionUnidadMedida }}
                                 </div>
                                 <div class="col col-sm-6">
@@ -107,6 +110,9 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let registro of registros; let i = index">
+                        <td style="text-align: center;">
+                            {{ registro?.id}}
+                        </td>
                         <td style="text-align: center;">
                             {{ registro?.correo}}
                         </td>
